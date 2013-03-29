@@ -77,6 +77,10 @@ nmap <F8> :TagbarToggle<CR>
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'AndrewRadev/linediff.vim'
+Bundle 'michaeljsmith/vim-indent-object'
+Bundle 'Townk/vim-autoclose'
+Bundle 'bogado/file-line'
+
 " vim-scripts repos
 Bundle 'VOoM'
 Bundle 'indentpython.vim'
@@ -93,6 +97,7 @@ Bundle 'ini-syntax-definition'
 "Bundle 'AutoComplPop'
 Bundle 'snippetsEmu'
 Bundle 'vcscommand.vim'
+"Bundle 'SearchComplete'
 
 " colorschemes
 Bundle 'desert256.vim'
