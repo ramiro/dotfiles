@@ -304,10 +304,13 @@ set smartcase
 set smarttab
 " set noerrorbells
 set wildignore=*.swp,*.bak,*.pyc,*.class
-" set nobackup
+" backup related settings
 set backup
 set backupdir=~/.vimtmp/backup//,.
+"if !isdirectory(expand(&backupdir)) call mkdir(expand(&backupdir), "p") endif
 set directory=~/.vimtmp/swap//,.
+"if !isdirectory(expand(&directory)) call mkdir(expand(&directory), "p") endif
+"
 " forgot sudo?, use :w!!
 cmap w!! w !sudo tee % >/dev/null
 " show status when there is no buffer
@@ -315,8 +318,11 @@ set laststatus=2
 
 set number
 if v:version >= 703
+  " undo related settings
   set undofile
   set undodir=~/.vimtmp/undo,.
+  "if !isdirectory(expand(&undodir)) call mkdir(expand(&undodir), "p") endif
+  "
   "set colorcolumn=80
   "autocmd filetype mail set colorcolumn=72
   set colorcolumn=+1
@@ -336,7 +342,7 @@ vnoremap / /\v
 
 set splitbelow splitright
 
-" TaskJuggler
+" for TaskJuggler
 augroup filetypedetect
 au BufNewFile,BufRead *.tjp,*.tji    setf tjp
 augroup END
