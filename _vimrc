@@ -5,6 +5,26 @@ set langmenu=en
 set nocompatible " Also needed by Vundle
 filetype off " needed by Vundle
 
+" Setting up Vundle - the vim plugin bundler
+let iCanHazVundle=1
+if has('win32') || has('win64')
+  let vundle_readme=expand('~/vimfiles/bundle/vundle/README.md')
+else
+  let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
+endif
+if !filereadable(vundle_readme)
+  echo "Installing Vundle..."
+  echo ""
+  if has('win32') || has('win64')
+    silent !mkdir -p ~/.vimfiles/bundle
+    silent !git clone https://github.com/gmarik/vundle ~/.vimfiles/bundle/vundle
+  else
+    silent !mkdir -p ~/.vim/bundle
+    silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+  endif
+  let iCanHazVundle=0
+endif
+
 " Vundle
 if has('win32') || has('win64')
   set rtp+=~/vimfiles/bundle/vundle/
@@ -77,6 +97,13 @@ Bundle 'vcscommand.vim'
 " colorschemes
 Bundle 'desert256.vim'
 Bundle 'sjl/badwolf'
+
+" Installing plugins the first time
+if iCanHazVundle == 0
+  echo "Installing Bundles, please ignore key map error messages"
+  echo ""
+  :BundleInstall
+endif
 
 " source $VIMRUNTIME/vimrc_example.vim
 " Last change:	2011 Apr 15 (vim 7.3.470)
