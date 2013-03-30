@@ -28,14 +28,17 @@ endif
 " Vundle
 if has('win32') || has('win64')
   set rtp+=~/vimfiles/bundle/vundle/
+  call vundle#rc('$HOME/vimfiles/bundle/')
 else
+  " Usual quickstart instructions
   set rtp+=~/.vim/bundle/vundle/
+  call vundle#rc()
 endif
 call vundle#rc()
 
 " let Vundle manage Vundle
 " required!
-Bundle 'ramiro/vundle'
+Bundle 'gmarik/vundle'
 
 " Bundles from their authors' repos:
 Bundle 'scrooloose/nerdcommenter'
