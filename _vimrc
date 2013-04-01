@@ -1,4 +1,10 @@
 " Ramiro's .vimrc for Vim 7
+
+" Source a local configuration file if available.
+if filereadable(expand("~/.vimrc.pre"))
+  source ~/.vimrc.pre
+endif
+
 set langmenu=en
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
