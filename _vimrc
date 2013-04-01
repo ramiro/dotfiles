@@ -16,8 +16,8 @@ if !filereadable(vundle_readme)
   echo "Installing Vundle..."
   echo ""
   if has('win32') || has('win64')
-    silent !mkdir -p ~/.vimfiles/bundle
-    silent !git clone https://github.com/gmarik/vundle ~/.vimfiles/bundle/vundle
+    silent !mkdir -p ~/vimfiles/bundle
+    silent !git clone https://github.com/gmarik/vundle ~/vimfiles/bundle/vundle
   else
     silent !mkdir -p ~/.vim/bundle
     silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
@@ -28,13 +28,12 @@ endif
 " Vundle
 if has('win32') || has('win64')
   set rtp+=~/vimfiles/bundle/vundle/
-  call vundle#rc('$HOME/vimfiles/bundle/')
+  call vundle#rc('~/vimfiles/bundle/')
 else
   " Usual quickstart instructions
   set rtp+=~/.vim/bundle/vundle/
   call vundle#rc()
 endif
-call vundle#rc()
 
 " let Vundle manage Vundle
 " required!
@@ -77,7 +76,11 @@ if has('win32') || has('win64')
 endif
 nmap <F8> :TagbarToggle<CR>
 
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+if has('win32') || has('win64')
+  Bundle 'rstacruz/sparkup', {'rtp': 'vim'}
+else
+  Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+endif
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'AndrewRadev/linediff.vim'
 Bundle 'michaeljsmith/vim-indent-object'
