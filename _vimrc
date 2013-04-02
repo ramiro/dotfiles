@@ -152,10 +152,8 @@ if has('mouse')
 endif
 
 " Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
 if &t_Co > 2 || has("gui_running")
   syntax on
-  "set hlsearch
 endif
 
 " Only do this part when compiled with support for autocommands.
@@ -221,19 +219,19 @@ endif
 set guioptions-=T
 
 "if has("gui_running")
-"  set t_Co=256
-"  colorscheme desert256
-"else
-"  colorscheme inkpot
-"endif
 set t_Co=256
 "au VimEnter * colorscheme desert256
 colorscheme desert256
+"endif
 
 set virtualedit=all
 
 set incsearch		" do incremental searching
-set hlsearch
+" switch on highlighting the last used search pattern when the terminal has
+" colors
+if &t_Co > 2 || has("gui_running")
+  set hlsearch
+endif
 
 set cursorline
 "set cursorcolumn
@@ -324,7 +322,7 @@ set backupdir=~/.vimtmp/backup//,.
 "if !isdirectory(expand(&backupdir)) call mkdir(expand(&backupdir), "p") endif
 set directory=~/.vimtmp/swap//,.
 "if !isdirectory(expand(&directory)) call mkdir(expand(&directory), "p") endif
-"
+
 " forgot sudo?, use :w!!
 cmap w!! w !sudo tee % >/dev/null
 " show status when there is no buffer
