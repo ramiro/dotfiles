@@ -1,5 +1,7 @@
 " Ramiro's .vimrc for Vim 7
 
+let $VIMHOME=expand('<sfile>:p:h')
+	
 " Source a local configuration file if available.
 if filereadable(expand("~/.vimrc.pre"))
   source ~/.vimrc.pre
@@ -22,8 +24,8 @@ if !filereadable(vundle_readme)
   echo "Installing Vundle..."
   echo ""
   if has('win32') || has('win64')
-    silent !mkdir -p ~/vimfiles/bundle
-    silent !git clone https://github.com/gmarik/vundle ~/vimfiles/bundle/vundle
+    exe "silent !mkdir -p " . $VIMHOME . "/vimfiles/bundle"
+    exe "silent !git clone https://github.com/gmarik/vundle " . $VIMHOME . "/vimfiles/bundle/vundle"
   else
     silent !mkdir -p ~/.vim/bundle
     silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
