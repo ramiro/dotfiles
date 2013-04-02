@@ -1,11 +1,13 @@
 " Ramiro's .vimrc for Vim 7
 
 let $VIMHOME=expand('<sfile>:p:h')
-	
+
 " Source a local configuration file if available.
 if filereadable(expand("~/.vimrc.pre"))
   source ~/.vimrc.pre
 endif
+
+set t_Co=256
 
 set langmenu=en
 " Use Vim settings, rather than Vi settings (much better!).
@@ -218,12 +220,6 @@ endif
 " No toolbar
 set guioptions-=T
 
-"if has("gui_running")
-set t_Co=256
-"au VimEnter * colorscheme desert256
-colorscheme desert256
-"endif
-
 set virtualedit=all
 
 set incsearch		" do incremental searching
@@ -334,7 +330,7 @@ if v:version >= 703
   set undofile
   set undodir=~/.vimtmp/undo,.
   "if !isdirectory(expand(&undodir)) call mkdir(expand(&undodir), "p") endif
-  "
+
   "set colorcolumn=80
   "autocmd filetype mail set colorcolumn=72
   set colorcolumn=+1
@@ -342,8 +338,10 @@ if v:version >= 703
   " set relativenumber
 "else
 "  set number
-
+  " Colums markers when writing Git/Hg commit messages
   au BufRead hg-editor*,COMMIT_EDITMSG set tw=72 colorcolumn=51,+1
+  " To get syntax coloring when composing email on GMail with Vim via the
+  " 'It's all text' Firefox extension
   au BufRead mail.google.com.*.txt set ft=mail
 endif
 " faster operations
