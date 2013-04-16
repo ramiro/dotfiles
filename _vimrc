@@ -15,6 +15,16 @@ set langmenu=en
 set nocompatible " Also needed by Vundle
 filetype off " needed by Vundle
 
+function EnsureTmpDir(dirlst)
+  let l:d = split(a:dirlst, ",")[0]
+  while l:d[-1:] == '/'
+    let l:d = l:d[:-2]
+  endwhile
+  if !isdirectory(expand(l:d))
+    call mkdir(expand(l:d), "p")
+  endif
+endfunction
+
 " Setting up Vundle - the vim plugin bundler
 let iCanHazVundle=1
 if has('win32') || has('win64')
@@ -60,6 +70,7 @@ Bundle 'kien/ctrlp.vim'
 let g:ctrlp_working_path_mode = 2
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_cache_dir = '~/.vimtmp/ctrlp'
+call EnsureTmpDir(g:ctrlp_cache_dir)
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\.git$\|\.hg$\|\.svn$',
   \ 'file': '\.exe$\|\.so$\|\.dll$',
@@ -315,9 +326,9 @@ set wildignore=*.swp,*.bak,*.pyc,*.class
 " backup related settings
 set backup
 set backupdir=~/.vimtmp/backup//,.
-"if !isdirectory(expand(&backupdir)) call mkdir(expand(&backupdir), "p") endif
+call EnsureTmpDir(&backupdir)
 set directory=~/.vimtmp/swap//,.
-"if !isdirectory(expand(&directory)) call mkdir(expand(&directory), "p") endif
+call EnsureTmpDir(&directory)
 
 " forgot sudo?, use :w!!
 cmap w!! w !sudo tee % >/dev/null
@@ -329,7 +340,7 @@ if v:version >= 703
   " undo related settings
   set undofile
   set undodir=~/.vimtmp/undo,.
-  "if !isdirectory(expand(&undodir)) call mkdir(expand(&undodir), "p") endif
+  call EnsureTmpDir(&undodir)
 
   "set colorcolumn=80
   "autocmd filetype mail set colorcolumn=72
