@@ -107,6 +107,7 @@ Bundle 'AndrewRadev/linediff.vim'
 Bundle 'michaeljsmith/vim-indent-object'
 Bundle 'Townk/vim-autoclose'
 Bundle 'bogado/file-line'
+Bundle 'pangloss/vim-javascript'
 
 " vim-scripts repos
 Bundle 'VOoM'
@@ -125,6 +126,7 @@ Bundle 'ini-syntax-definition'
 Bundle 'snippetsEmu'
 Bundle 'vcscommand.vim'
 "Bundle 'SearchComplete'
+Bundle 'indenthtml.vim'
 
 " colorschemes
 Bundle 'desert256.vim'
