@@ -370,7 +370,11 @@ augroup filetypedetect
 au BufNewFile,BufRead *.tjp,*.tji    setf tjp
 augroup END
 
-au! Syntax tjp    so ~/vimfiles/syntax/tjp.vim
+if has('win32') || has('win64')
+  au! Syntax tjp    so ~/vimfiles/syntax/tjp.vim
+else
+  au! Syntax tjp    so ~/.vim/syntax/tjp.vim
+endif
 
 " Source a local configuration file if available.
 if filereadable(expand("~/.vimrc.local"))
