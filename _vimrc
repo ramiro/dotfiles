@@ -82,6 +82,7 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
+Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-session'
 Bundle 'tpope/vim-surround'
 Bundle 'vim-pandoc/vim-pandoc'
@@ -108,6 +109,7 @@ Bundle 'michaeljsmith/vim-indent-object'
 Bundle 'Townk/vim-autoclose'
 Bundle 'bogado/file-line'
 Bundle 'pangloss/vim-javascript'
+Bundle 'davidhalter/jedi-vim'
 
 " vim-scripts repos
 Bundle 'VOoM'
@@ -233,6 +235,8 @@ endif
 " No toolbar
 set guioptions-=T
 
+"colorscheme desert256
+
 set virtualedit=all
 
 set incsearch		" do incremental searching
@@ -246,7 +250,10 @@ set cursorline
 "set cursorcolumn
 
 " set visualbell
-set errorbells
+"set errorbells
+" don't bell or blink
+set noerrorbells
+set vb t_vb=
 set nowrap
 set scrolloff=2
 set wildmode=longest,list,full
@@ -375,6 +382,9 @@ if has('win32') || has('win64')
 else
   au! Syntax tjp    so ~/.vim/syntax/tjp.vim
 endif
+
+" Don't warn on missing docstrings
+let g:syntastic_python_pylint_args='-d C0111'
 
 " Source a local configuration file if available.
 if filereadable(expand("~/.vimrc.local"))
