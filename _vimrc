@@ -26,7 +26,7 @@ function! EnsureTmpDir(dirlst)
 endfunction
 
 " Setting up Vundle - the vim plugin bundler
-let iCanHazVundle=1
+let vundle_first_run=0
 if has('win32') || has('win64')
   let vundle_readme=expand('~/vimfiles/bundle/vundle/README.md')
 else
@@ -42,7 +42,7 @@ if !filereadable(vundle_readme)
     silent !mkdir -p ~/.vim/bundle
     silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
   endif
-  let iCanHazVundle=0
+  let vundle_first_run=1
 endif
 
 " Vundle
@@ -152,7 +152,7 @@ Bundle 'desert256.vim'
 Bundle 'sjl/badwolf'
 
 " Installing plugins the first time
-if iCanHazVundle == 0
+if vundle_first_run == 1
   echo "Installing Bundles, please ignore key map error messages"
   echo ""
   :BundleInstall
