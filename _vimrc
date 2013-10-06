@@ -15,7 +15,7 @@ set langmenu=en
 set nocompatible " Also needed by Vundle
 filetype off " needed by Vundle
 
-function EnsureTmpDir(dirlst)
+function! EnsureTmpDir(dirlst)
   let l:d = split(a:dirlst, ",")[0]
   while l:d[-1:] == '/'
     let l:d = l:d[:-2]
