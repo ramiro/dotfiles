@@ -140,7 +140,6 @@ endif
 Bundle 'Align'
 Bundle 'loremipsum'
 Bundle 'bufexplorer.zip'
-Bundle 'ini-syntax-definition'
 "Bundle 'AutoComplPop'
 Bundle 'snippetsEmu'
 Bundle 'vcscommand.vim'
@@ -391,7 +390,7 @@ set splitbelow splitright
 
 " for TaskJuggler
 augroup filetypedetect
-au BufNewFile,BufRead *.tjp,*.tji    setf tjp
+au! BufRead,BufNewFile *.tjp,*.tji    setf tjp
 augroup END
 
 if has('win32') || has('win64')
@@ -402,6 +401,9 @@ endif
 
 " Don't warn on missing docstrings
 let g:syntastic_python_pylint_args='-d C0111'
+
+" .ini files
+au! BufRead,BufNewFile *.ini,*/.hgrc,*/hgrc set filetype=dosini
 
 " Source a local configuration file if available.
 if filereadable(expand("~/.vimrc.local"))
