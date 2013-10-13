@@ -130,7 +130,6 @@ Bundle 'davidhalter/jedi-vim'
 
 " vim-scripts repos
 Bundle 'VOoM'
-Bundle 'indentpython.vim'
 Bundle 'TaskList.vim'
 Bundle 'matchit.zip'
 Bundle 'spacehi.vim'
@@ -150,6 +149,14 @@ Bundle 'indenthtml.vim'
 Bundle 'desert256.vim'
 Bundle 'sjl/badwolf'
 
+" Python indentation
+" http://www.vim.org/scripts/script.php?script_id=3003
+"Bundle 'indentpython.vim'
+" http://www.vim.org/scripts/script.php?script_id=3461
+"Bundle 'vim-scripts/indentpython.vim--nianyang'
+" https://github.com/hynek/vim-python-pep8-indent
+Bundle 'hynek/vim-python-pep8-indent'
+
 " Installing plugins the first time
 if vundle_first_run == 1
   echo "Installing Bundles, please ignore key map error messages"
@@ -168,9 +175,9 @@ endif
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
-set history=50		" keep 50 lines of command line history
-set ruler		" show the cursor position all the time
-set showcmd		" display incomplete commands
+set history=50 " keep 50 lines of command line history
+set ruler      " show the cursor position all the time
+set showcmd    " display incomplete commands
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
@@ -219,7 +226,7 @@ if has("autocmd")
 
 else
 
-  set autoindent		" always set autoindenting on
+  set autoindent " always set autoindenting on
 
 endif " has("autocmd")
 
@@ -227,8 +234,7 @@ endif " has("autocmd")
 " file it was loaded from, thus the changes you made.
 " Only define it when not defined already.
 if !exists(":DiffOrig")
-  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
-		  \ | wincmd p | diffthis
+  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
 endif
 "=============================================================================
 
@@ -255,7 +261,7 @@ set guioptions-=T
 
 set virtualedit=all
 
-set incsearch		" do incremental searching
+set incsearch " do incremental searching
 " switch on highlighting the last used search pattern when the terminal has
 " colors
 if &t_Co > 2 || has("gui_running")
