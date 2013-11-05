@@ -150,6 +150,7 @@ Bundle 'Townk/vim-autoclose'
 Bundle 'bogado/file-line'
 Bundle 'pangloss/vim-javascript'
 Bundle 'davidhalter/jedi-vim'
+Bundle 'Rykka/riv.vim'
 
 " vim-scripts repos
 Bundle 'VOoM'
