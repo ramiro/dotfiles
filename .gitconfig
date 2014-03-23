@@ -1,0 +1,25 @@
+[include]
+	path = .gitconfig.local
+[color]
+	ui = true
+[core]
+	excludesfile = ~/.gitignore
+[alias]
+	ci = commit
+	st = status -s
+	sta = status
+	glog = log --graph
+	co = checkout
+	ghupd = pull --ff-only upstream master
+	ghffpull = pull --ff-only upstream master
+	ghpush = push origin master
+	ghffpush = push origin master
+	;incoming = log upstream/master..master
+	;outgoing = log master..upstream/master
+	lg = log --color --graph --pretty=format:'%h %C(blue)(%cr) %C(bold blue)<%an>%C(reset)%C(red)%d%C(reset) %s' --abbrev-commit --
+	bra = branch
+	rem = remote
+[credential]
+	helper = cache --timeout=3600
+[push]
+	default = simple

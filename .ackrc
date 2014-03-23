@@ -1,0 +1,7 @@
+--type-set=rst=.rst
+--type-set=txt=.txt
+--type-set=diff=.diff
+--type-set=po=.po,.pot
+--type-set=less=.less
+--pager=less -R -F -X
+--ignore-dir=.tox
