@@ -1,0 +1,34 @@
+[extensions]
+transplant =
+rebase =
+bookmarks =
+pager =
+purge =
+graphlog =
+color =
+fetch =
+#hgcodesmell = ~/src/hgcodesmell/hgcodesmell/hgcodesmell.py
+#hgsubversion = ~/src/hgsubversion/hgsubversion
+#hgpunchcard = ~/src/hgpunchcard/hgpunchcard/hgpunchcard.py
+#histedit = ~/src/histedit/hg_histedit.py
+# hg-rc
+git =
+
+[ui]
+username=Ramiro Morales <ramiro@rmorales.net>
+editor=vim
+merge=kdiff3
+ignore=~/.hgignore-user
+
+[merge-tools]
+kdiff3.args = $base $local $other -o $output
+
+[diff]
+git=1
+nodates=1
+
+#[bookmarks]
+#track.current = True
+
+[pager]
+pager = less -R -F -X -S
