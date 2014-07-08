@@ -151,6 +151,8 @@ Bundle 'bogado/file-line'
 Bundle 'pangloss/vim-javascript'
 Bundle 'davidhalter/jedi-vim'
 Bundle 'Rykka/riv.vim'
+Bundle 'editorconfig/editorconfig-vim'
+Bundle 'mitsuhiko/vim-jinja'
 
 " vim-scripts repos
 Bundle 'VOoM'
@@ -373,7 +375,8 @@ autocmd filetype html,xml set listchars-=tab:>.
 " use multiple of shiftwidth when indenting with '<' and '>'
 set shiftround
 " ignore case if search pattern is all lowercase, case-sensitive otherwise
-set smartcase
+"set ignorecase
+"set smartcase
 " insert tabs on the start of a line according to shiftwidth, not tabstop
 set smarttab
 " set noerrorbells
@@ -434,6 +437,9 @@ let g:syntastic_python_pylint_args='-d C0111'
 
 " .ini files
 au! BufRead,BufNewFile *.ini,*/.hgrc,*/hgrc set filetype=dosini
+
+" Jinja files
+au! BufRead,BufNewFile *.jinja,*/.jinja2 set filetype=jinja
 
 " Source a local configuration file if available.
 if filereadable(expand("~/.vimrc.local"))
