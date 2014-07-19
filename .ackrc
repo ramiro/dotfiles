@@ -2,6 +2,9 @@
 --type-set=txt=.txt
 --type-set=diff=.diff
 --type-set=po=.po,.pot
+--type-set=cpy=.pyx,.pxd
 --type-set=less=.less
+--type-set=jin=.jinja,.jinja2
+--type-set=scss=.scss
 --pager=less -R -F -X
 --ignore-dir=.tox
