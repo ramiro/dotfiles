@@ -83,7 +83,7 @@ au Syntax * RainbowParenthesesLoadBraces
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
 Plugin 'tpope/vim-surround'
-Plugin 'vim-pandoc/vim-pandoc'
+"Plugin 'vim-pandoc/vim-pandoc'
 "Plugin 'Lokaltog/vim-powerline'
 set encoding=utf-8
 let g:Powerline_symbols = 'unicode'
@@ -148,7 +148,7 @@ Plugin 'Townk/vim-autoclose'
 Plugin 'bogado/file-line'
 Plugin 'pangloss/vim-javascript'
 Plugin 'davidhalter/jedi-vim'
-Plugin 'Rykka/riv.vim'
+"Plugin 'Rykka/riv.vim'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'mitsuhiko/vim-jinja'
 
@@ -441,7 +441,6 @@ au! BufRead,BufNewFile *.ini,*/.hgrc,*/hgrc set filetype=dosini
 
 " Jinja files
 au! BufRead,BufNewFile *.jinja,*/.jinja2 set filetype=jinja
-
 
 " Source a local configuration file if available.
 if filereadable(expand("~/.vimrc.local"))
