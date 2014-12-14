@@ -422,6 +422,9 @@ let g:syntastic_python_pylint_args='-d C0111'
 " .ini files
 au! BufRead,BufNewFile *.ini,*/.hgrc,*/hgrc set filetype=dosini
 
+" Jinja files
+au! BufRead,BufNewFile *.jinja,*/.jinja2 set filetype=jinja
+
 " Source a local configuration file if available.
 if filereadable(expand("~/.vimrc.post"))
   source ~/.vimrc.post
