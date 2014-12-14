@@ -254,9 +254,11 @@ if s:mswin
 
   set diffexpr=
 
-  " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
+  " For Windows GUI: remove 't' flag from 'guioptions': no tearoff menu entries
   let &guioptions = substitute(&guioptions, "t", "", "g")
   set guifont=DejaVu_Sans_Mono:h9:cANSI
+  " Better gvim font rendering on Windows since 7.4.393
+  set renderoptions=type:directx,gamma:1.0,contrast:0.2,level:1.0,geom:1,renmode:5,taamode:1
 else
   lang en_US.UTF-8
 endif
