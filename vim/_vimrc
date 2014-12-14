@@ -313,11 +313,15 @@ autocmd BufWritePre * call RemoveTrailingWhitespace()
 au! BufRead,BufNewFile *.moin set filetype=moin1_5
 
 " Maximize window size for gvim
+function! ToggleFullScreen()
+  call system("wmctrl -i -r ".v:windowid." -b toggle,maximized_vert,maximized_horz")
+  redraw
+endfunction
 if has("gui_running")
   if s:mswin
     au GUIEnter * simalt ~x
-  "else
-  "  set lines=99999 columns=99999
+  else
+    autocmd GUIEnter * call ToggleFullScreen()
   endif
 endif
 
