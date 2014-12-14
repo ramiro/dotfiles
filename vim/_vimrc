@@ -423,6 +423,6 @@ let g:syntastic_python_pylint_args='-d C0111'
 au! BufRead,BufNewFile *.ini,*/.hgrc,*/hgrc set filetype=dosini
 
 " Source a local configuration file if available.
-if filereadable(expand("~/.vimrc.local"))
-  source ~/.vimrc.local
+if filereadable(expand("~/.vimrc.post"))
+  source ~/.vimrc.post
 endif
