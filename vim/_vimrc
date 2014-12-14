@@ -1,5 +1,7 @@
 let $VIMHOME=expand('<sfile>:p:h')
 
+let s:mswin = has('win32') || has('win64')
+
 " Source a local configuration file if available.
 if filereadable(expand("~/.vimrc.pre"))
   source ~/.vimrc.pre
@@ -25,7 +27,7 @@ endfunction
 
 " Setting up Vundle - the vim plugin bundler
 let vundle_first_run=0
-if has('win32') || has('win64')
+if s:mswin
   let vundle_readme=expand('~/vimfiles/bundle/Vundle.vim/README.md')
 else
   let vundle_readme=expand('~/.vim/bundle/Vundle.vim/README.md')
@@ -33,7 +35,7 @@ endif
 if !filereadable(vundle_readme)
   echo "Installing Vundle..."
   echo ""
-  if has('win32') || has('win64')
+  if s:mswin
     exe "silent !mkdir -p " . $VIMHOME . "/vimfiles/bundle"
     exe "silent !git clone https://github.com/gmarik/Vundle.vim " . $VIMHOME . "/vimfiles/bundle/Vundle.vim"
   else
@@ -44,7 +46,7 @@ if !filereadable(vundle_readme)
 endif
 
 " Vundle
-if has('win32') || has('win64')
+if s:mswin
   set rtp+=~/vimfiles/bundle/Vundle.vim/
   call vundle#begin('~/vimfiles/bundle/')
 else
@@ -131,12 +133,12 @@ let g:airline_symbols.whitespace = 'Ξ'
 Plugin 'Lokaltog/vim-easymotion'
 
 Plugin 'majutsushi/tagbar'
-if has('win32') || has('win64')
+if s:mswin
   let g:tagbar_ctags_bin = '~/bin/ctags.exe'
 endif
 nmap <F8> :TagbarToggle<CR>
 
-if has('win32') || has('win64')
+if s:mswin
   Plugin 'rstacruz/sparkup', {'rtp': 'vim'}
 else
   Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
@@ -247,7 +249,7 @@ if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
 endif
 
-if has('win32') || has('win64')
+if s:mswin
   behave mswin
 
   set diffexpr=
@@ -312,7 +314,7 @@ au! BufRead,BufNewFile *.moin set filetype=moin1_5
 
 " Maximize window size for gvim
 if has("gui_running")
-  if has('win32')
+  if s:mswin
     au GUIEnter * simalt ~x
   "else
   "  set lines=99999 columns=99999
@@ -408,7 +410,7 @@ augroup filetypedetect
 au! BufRead,BufNewFile *.tjp,*.tji    setf tjp
 augroup END
 
-if has('win32') || has('win64')
+if s:mswin
   au! Syntax tjp    so ~/vimfiles/syntax/tjp.vim
 else
   au! Syntax tjp    so ~/.vim/syntax/tjp.vim
