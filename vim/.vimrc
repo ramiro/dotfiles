@@ -2,6 +2,10 @@ let $VIMHOME=expand('<sfile>:p:h')
 
 let s:mswin = has('win32') || has('win64')
 
+if s:mswin
+  set rtp=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
+endif
+
 " Source a local configuration file if available.
 if filereadable(expand("~/.vimrc.pre"))
   source ~/.vimrc.pre
@@ -27,17 +31,13 @@ endfunction
 
 " Setting up Vundle - the vim plugin bundler
 let vundle_first_run=0
-if s:mswin
-  let vundle_readme=expand('~/vimfiles/bundle/Vundle.vim/README.md')
-else
-  let vundle_readme=expand('~/.vim/bundle/Vundle.vim/README.md')
-endif
+let vundle_readme=expand('~/.vim/bundle/Vundle.vim/README.md')
 if !filereadable(vundle_readme)
   echo "Installing Vundle..."
   echo ""
   if s:mswin
-    exe "silent !mkdir -p " . $VIMHOME . "/vimfiles/bundle"
-    exe "silent !git clone https://github.com/gmarik/Vundle.vim " . $VIMHOME . "/vimfiles/bundle/Vundle.vim"
+    exe "silent !mkdir -p " . $VIMHOME . "/.vim/bundle"
+    exe "silent !git clone https://github.com/gmarik/Vundle.vim " . $VIMHOME . "/.vim/bundle/Vundle.vim"
   else
     silent !mkdir -p ~/.vim/bundle
     silent !git clone https://github.com/gmarik/Vundle.vim ~/.vim/bundle/Vundle.vim
@@ -46,12 +46,11 @@ if !filereadable(vundle_readme)
 endif
 
 " Vundle
+set rtp+=~/.vim/bundle/Vundle.vim/
 if s:mswin
-  set rtp+=~/vimfiles/bundle/Vundle.vim/
-  call vundle#begin('~/vimfiles/bundle/')
+  call vundle#begin('~/.vim/bundle/')
 else
   " Usual quickstart instructions
-  set rtp+=~/.vim/bundle/Vundle.vim/
   call vundle#begin()
 endif
 
@@ -416,11 +415,7 @@ augroup filetypedetect
 au! BufRead,BufNewFile *.tjp,*.tji    setf tjp
 augroup END
 
-if s:mswin
-  au! Syntax tjp    so ~/vimfiles/syntax/tjp.vim
-else
-  au! Syntax tjp    so ~/.vim/syntax/tjp.vim
-endif
+au! Syntax tjp    so ~/.vim/syntax/tjp.vim
 
 " Don't warn on missing docstrings
 let g:syntastic_python_pylint_args='-d C0111'
@@ -434,4 +429,8 @@ au! BufRead,BufNewFile *.jinja,*/.jinja2 set filetype=jinja
 " Source a local configuration file if available.
 if filereadable(expand("~/.vimrc.post"))
   source ~/.vimrc.post
+endif
+
+if s:mswin
+  set rtp^=$HOME/.vim/
 endif
