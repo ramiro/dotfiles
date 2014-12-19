@@ -152,6 +152,10 @@ Plugin 'davidhalter/jedi-vim'
 "Plugin 'Rykka/riv.vim'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'mitsuhiko/vim-jinja'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'Yggdroot/indentLine'
+" Plugin 'bronson/vim-trailing-whitespace'
+" Plugin 'ciaranm/detectindent'
 
 " vim-scripts repos
 Plugin 'VOoM'
