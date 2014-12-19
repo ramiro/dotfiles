@@ -1,0 +1,7 @@
+syntax:glob
+
+*.egg-info
+*.pot
+*.py[co]
+*.orig
+*~

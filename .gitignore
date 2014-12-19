@@ -1,6 +1,1 @@
-*~
-*.un~
-\.*.sw?
-*.orig
-*.rej
-*.pyc
+home/.vim/bundle
