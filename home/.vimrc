@@ -336,9 +336,10 @@ set formatoptions+=n
 let mapleader=","
 " don't unload buffers when abandoning them, can be unsaved
 "set hidden
-" clear the search buffer with <leader>/
-nmap <silent> <leader>/ :nohlsearch<CR>
-"nmap <silent> <leader><space> :nohlsearch<CR>
+" clear the search buffer with <Leader>/
+nmap <silent> <Leader>/ :nohlsearch<CR>
+"nmap <silent> <Leader><space> :nohlsearch<CR>
+"
 " no arrow keys, hjkl FTW
 map <up> <nop>
 map <down> <nop>
