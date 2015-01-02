@@ -36,8 +36,8 @@ if !filereadable(vundle_readme)
   echo "Installing Vundle..."
   echo ""
   if s:mswin
-    exe "silent !mkdir -p " . $VIMHOME . "/.vim/bundle"
-    exe "silent !git clone https://github.com/gmarik/Vundle.vim " . $VIMHOME . "/.vim/bundle/Vundle.vim"
+    execute "silent !mkdir -p " . $VIMHOME . "/.vim/bundle"
+    execute "silent !git clone https://github.com/gmarik/Vundle.vim " . $VIMHOME . "/.vim/bundle/Vundle.vim"
   else
     silent !mkdir -p ~/.vim/bundle
     silent !git clone https://github.com/gmarik/Vundle.vim ~/.vim/bundle/Vundle.vim
@@ -76,10 +76,10 @@ let g:ctrlp_custom_ignore = {
   \ }
 
 Plugin 'kien/rainbow_parentheses.vim'
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
+autocmd VimEnter * RainbowParenthesesToggle
+autocmd Syntax * RainbowParenthesesLoadRound
+autocmd Syntax * RainbowParenthesesLoadSquare
+autocmd Syntax * RainbowParenthesesLoadBraces
 
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
@@ -221,7 +221,7 @@ filetype plugin indent on
 
 " Put these in an autocmd group, so that we can delete them easily.
 augroup vimrcEx
-au!
+autocmd!
 
 " For all text files set 'textwidth' to 78 characters.
 autocmd FileType text setlocal textwidth=78
@@ -233,7 +233,7 @@ autocmd FileType text setlocal textwidth=78
 " position when opening a file.
 autocmd BufReadPost *
   \ if line("'\"") > 1 && line("'\"") <= line("$") |
-  \   exe "normal! g`\"" |
+  \   execute "normal! g`\"" |
   \ endif
 
 augroup END
@@ -256,7 +256,7 @@ if s:mswin
   " Better gvim font rendering on Windows since 7.4.393
   set renderoptions=type:directx,gamma:1.0,contrast:0.2,level:1.0,geom:1,renmode:5,taamode:1
 else
-  lang en_US.UTF-8
+  language en_US.UTF-8
 endif
 
 " let $LANG='en'
@@ -283,7 +283,7 @@ set cursorline
 "set errorbells
 " don't bell or blink
 set noerrorbells
-set vb t_vb=
+set visualbell t_vb=
 set nowrap
 set scrolloff=2
 set wildmode=longest,list,full
@@ -307,9 +307,6 @@ endfunction
 
 autocmd BufWritePre * call RemoveTrailingWhitespace()
 
-" for editmoin:
-au! BufRead,BufNewFile *.moin set filetype=moin1_5
-
 " Maximize window size for gvim
 function! ToggleFullScreen()
   call system("wmctrl -i -r ".v:windowid." -b toggle,maximized_vert,maximized_horz")
@@ -317,7 +314,7 @@ function! ToggleFullScreen()
 endfunction
 if has("gui_running")
   if s:mswin
-    au GUIEnter * simalt ~x
+    autocmd GUIEnter * simalt ~x
   else
     autocmd GUIEnter * call ToggleFullScreen()
   endif
@@ -395,10 +392,10 @@ if v:version >= 703
 "else
 "  set number
   " Colums markers when writing Git/Hg commit messages
-  au BufRead hg-editor*,COMMIT_EDITMSG set tw=72 colorcolumn=51,+1
+  autocmd BufRead hg-editor*,COMMIT_EDITMSG set tw=72 colorcolumn=51,+1
   " To get syntax coloring when composing email on GMail with Vim via the
   " 'It's all text' Firefox extension
-  au BufRead mail.google.com.*.txt set ft=mail
+  autocmd BufRead mail.google.com.*.txt set ft=mail
 endif
 " faster operations
 set ttyfast
@@ -408,21 +405,21 @@ vnoremap / /\v
 
 set splitbelow splitright
 
-" for TaskJuggler
 augroup filetypedetect
-au! BufRead,BufNewFile *.tjp,*.tji    setf tjp
+" TaskJuggler files
+autocmd! BufRead,BufNewFile *.tjp,*.tji    setfiletype tjp
+" .ini files
+autocmd! BufRead,BufNewFile *.ini,*/.hgrc,*/hgrc set filetype=dosini
+" Jinja files
+autocmd BufRead,BufNewFile *.jinja,*/.jinja2 set filetype=jinja
+" editmoin files
+autocmd! BufRead,BufNewFile *.moin set filetype=moin1_5
 augroup END
 
-au! Syntax tjp    so ~/.vim/syntax/tjp.vim
+autocmd! Syntax tjp    source ~/.vim/syntax/tjp.vim
 
 " Don't warn on missing docstrings
 let g:syntastic_python_pylint_args='-d C0111'
-
-" .ini files
-au! BufRead,BufNewFile *.ini,*/.hgrc,*/hgrc set filetype=dosini
-
-" Jinja files
-au! BufRead,BufNewFile *.jinja,*/.jinja2 set filetype=jinja
 
 " Source a local configuration file if available.
 if filereadable(expand("~/.vimrc.post"))
