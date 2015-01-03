@@ -145,16 +145,18 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'Yggdroot/indentLine'
 Plugin 'mbbill/undotree'
 Plugin 'tpope/vim-fugitive'
-" Plugin 'bronson/vim-trailing-whitespace'
-" Plugin 'ciaranm/detectindent'
-" Plugin 'vim-pandoc/vim-pandoc'
-" Plugin 'Rykka/riv.vim'
+"Plugin 'bronson/vim-trailing-whitespace'
+Plugin 'ntpeters/vim-better-whitespace'
+"Plugin 'ciaranm/detectindent'
+"Plugin 'vim-pandoc/vim-pandoc'
+"Plugin 'Rykka/riv.vim'
+"Plugin 'nathanaelkane/vim-indent-guides'
 
 " vim-scripts repos
 Plugin 'VOoM'
 Plugin 'TaskList.vim'
 Plugin 'matchit.zip'
-Plugin 'spacehi.vim'
+"Plugin 'spacehi.vim'
 if has('python')
   Plugin 'ramiro/sort-python-imports'
 endif
@@ -305,7 +307,7 @@ function! RemoveTrailingWhitespace()
   call setreg('/', l:searchreg, l:searchregtype)
 endfunction
 
-autocmd BufWritePre * call RemoveTrailingWhitespace()
+"autocmd BufWritePre * call RemoveTrailingWhitespace()
 
 " Maximize window size for gvim
 function! ToggleFullScreen()
