@@ -1,3 +1,5 @@
+set nocompatible
+
 let $VIMHOME=expand('<sfile>:p:h')
 
 let s:mswin = has('win32') || has('win64')
@@ -14,10 +16,8 @@ endif
 set t_Co=256
 
 set langmenu=en
-" Use Vim settings, rather than Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
-set nocompatible " Also needed by Vundle
-filetype off " needed by Vundle
+
+filetype off
 
 function! EnsureTmpDir(dirlst)
   let l:d = split(a:dirlst, ",")[0]
