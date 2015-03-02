@@ -15,7 +15,8 @@ fetch =
 git =
 
 [ui]
-username=Ramiro Morales <ramiro@rmorales.net>
+;username=Ramiro Morales <ramiro@rmorales.net>
+username=Ramiro Morales <ramiro@>allvion.com
 editor=vim
 merge=kdiff3
 ignore=~/.hgignore-user
