@@ -9,3 +9,5 @@
 --type-set=scss=.scss
 --pager=less -R -F -X
 --ignore-dir=.tox
+--ignore-dir=migrations
+--ignore-dir=ephemeral_static
