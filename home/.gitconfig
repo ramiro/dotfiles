@@ -28,6 +28,14 @@
 	lg = log --color --graph --pretty=format:'%h %C(blue)(%cr) %C(bold blue)<%an>%C(reset)%C(red)%d%C(reset) %s' --abbrev-commit --
 	bra = branch
 	rem = remote
+	a = add
+	b = branch
+	c = commit
+	d = diff
+	s = status -s
+	aa = add --all
+	au = add -u
+	dc = diff --cached
 [credential]
 	helper = cache --timeout=3600
 ;[push]
