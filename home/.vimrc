@@ -151,6 +151,8 @@ Plugin 'ntpeters/vim-better-whitespace'
 "Plugin 'vim-pandoc/vim-pandoc'
 "Plugin 'Rykka/riv.vim'
 "Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'mtth/scratch.vim'
+Plugin 'wincent/ferret.vim'
 
 " vim-scripts repos
 Plugin 'VOoM'
@@ -172,6 +174,7 @@ Plugin 'indenthtml.vim'
 " colorschemes
 Plugin 'desert256.vim'
 Plugin 'sjl/badwolf'
+Plugin 'NLKNguyen/papercolor-theme'
 
 " Python indentation
 " http://www.vim.org/scripts/script.php?script_id=3003
