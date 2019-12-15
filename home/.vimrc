@@ -152,7 +152,7 @@ Plugin 'ntpeters/vim-better-whitespace'
 "Plugin 'Rykka/riv.vim'
 "Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'mtth/scratch.vim'
-Plugin 'wincent/ferret.vim'
+"Plugin 'wincent/ferret.vim'
 
 " vim-scripts repos
 Plugin 'VOoM'
@@ -183,6 +183,10 @@ Plugin 'NLKNguyen/papercolor-theme'
 "Plugin 'vim-scripts/indentpython.vim--nianyang'
 " https://github.com/hynek/vim-python-pep8-indent
 Plugin 'hynek/vim-python-pep8-indent'
+
+if has('nvim')
+  Plugin 'floobits/floobits-neovim'
+endif
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -337,7 +341,7 @@ set formatoptions+=n
 " change the mapleader from \ to ,
 let mapleader=","
 " don't unload buffers when abandoning them, can be unsaved
-"set hidden
+set hidden
 " clear the search buffer with <Leader>/
 nmap <silent> <Leader>/ :nohlsearch<CR>
 "nmap <silent> <Leader><space> :nohlsearch<CR>
