@@ -37,7 +37,11 @@ function! EnsureTmpDir(dirlst)
   endif
 endfunction
 
-call plug#begin('~/.local/share/nvim/plugged')
+if using_neovim
+    call plug#begin("~/.local/share/vim-plug/nvim")
+else
+    call plug#begin("~/.local/share/vim-plug/vim")
+endif
 
 " Plugins from their authors' repos:
 Plug 'scrooloose/nerdcommenter'
