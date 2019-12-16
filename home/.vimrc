@@ -431,9 +431,11 @@ autocmd! Syntax tjp    source ~/.vim/syntax/tjp.vim
 " Don't warn on missing docstrings
 let g:syntastic_python_pylint_args='-d C0111'
 
-" 256 colors on macos + iterm
-" see https://jdhao.github.io/2018/10/19/tmux_nvim_true_color/
-set termguicolors
+if has('mac')
+  " 256 colors on macos + iterm
+  " see https://jdhao.github.io/2018/10/19/tmux_nvim_true_color/
+  set termguicolors
+endif
 
 " Trying some mapping for fzf. See https://medium.com/@jesseleite/its-dangerous-to-vim-alone-take-fzf-283bcff74d21
 nmap <Leader>F :Files<CR>
