@@ -71,7 +71,7 @@ Plug 'xolox/vim-session'
 
 Plug 'tpope/vim-surround'
 set encoding=utf-8
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
 "if !exists('g:airline_symbols')
 "  let g:airline_symbols = {}
 "endif
@@ -122,7 +122,6 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'Townk/vim-autoclose'
 Plug 'bogado/file-line'
 Plug 'pangloss/vim-javascript'
-Plug 'davidhalter/jedi-vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'mitsuhiko/vim-jinja'
 Plug 'terryma/vim-multiple-cursors'
@@ -151,9 +150,12 @@ Plug 'junegunn/fzf.vim'
 Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
 Plug 'lotabout/skim.vim'
 
-if using_neovim && vim_plug_just_installed
-    Plug 'Shougo/deoplete.nvim', {'do': ':autocmd VimEnter * UpdateRemotePlugins'}
-else
+"if using_neovim && vim_plug_just_installed
+"    Plug 'Shougo/deoplete.nvim', {'do': ':autocmd VimEnter * UpdateRemotePlugins'}
+"else
+"    Plug 'Shougo/deoplete.nvim'
+"endif
+if using_vim
     Plug 'Shougo/deoplete.nvim'
 endif
 
@@ -164,9 +166,32 @@ if using_vim
     Plug 'vim-scripts/matchit.zip'
 endif
 
-if has('python')
-  Plug 'ramiro/sort-python-imports'
-endif
+"if has('python')
+"  Plug 'ramiro/sort-python-imports'
+"endif
+
+" Pending tasks list
+Plug 'fisadev/FixedTaskList.vim'
+" Automatically sort python imports
+Plug 'fisadev/vim-isort'
+
+" Python autocompletion
+Plug 'deoplete-plugins/deoplete-jedi'
+" Completion from other opened files
+Plug 'Shougo/context_filetype.vim'
+" Just to add the python go-to-definition and similar features, autocompletion
+" from this plugin is disabled
+Plug 'davidhalter/jedi-vim'
+" Automatically close parenthesis, etc
+Plug 'Townk/vim-autoclose'
+" Indentation based movements
+Plug 'jeetsukumaran/vim-indentwise'
+" Better language packs
+Plug 'sheerun/vim-polyglot'
+" Highlight matching html tags
+Plug 'valloric/MatchTagAlways'
+" Linters
+Plug 'neomake/neomake'
 
 " vim-scripts repos
 Plug 'vim-scripts/VOoM'
