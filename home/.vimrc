@@ -141,9 +141,9 @@ Plug 'mtth/scratch.vim'
 " https://github.com/hynek/vim-python-pep8-indent
 Plug 'hynek/vim-python-pep8-indent'
 
-if using_neovim
-  Plug 'floobits/floobits-neovim'
-endif
+"if using_neovim
+"  Plug 'floobits/floobits-neovim'
+"endif
 
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
