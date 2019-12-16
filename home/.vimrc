@@ -1,3 +1,6 @@
+let using_neovim = has('nvim')
+let using_vim = !using_neovim
+
 set nocompatible
 
 let $VIMHOME=expand('<sfile>:p:h')
@@ -9,8 +12,13 @@ if s:mswin
 endif
 
 " Source a local configuration file if available.
-if filereadable(expand("~/.vimrc.pre"))
-  source ~/.vimrc.pre
+if using_neovim
+    let pre_vim_path = "~/.config/nvim/pre.vim"
+else
+    let pre_vim_path = "~/.vim/pre.vim"
+endif
+if filereadable(expand(pre_vim_path))
+  execute "source " . pre_vim_path
 endif
 
 set t_Co=256
@@ -29,43 +37,16 @@ function! EnsureTmpDir(dirlst)
   endif
 endfunction
 
-" Setting up Vundle - the vim plugin bundler
-let vundle_first_run=0
-let vundle_readme=expand('~/.vim/bundle/Vundle.vim/README.md')
-if !filereadable(vundle_readme)
-  echo "Installing Vundle..."
-  echo ""
-  if s:mswin
-    execute "silent !mkdir -p " . $VIMHOME . "/.vim/bundle"
-    execute "silent !git clone https://github.com/gmarik/Vundle.vim " . $VIMHOME . "/.vim/bundle/Vundle.vim"
-  else
-    silent !mkdir -p ~/.vim/bundle
-    silent !git clone https://github.com/gmarik/Vundle.vim ~/.vim/bundle/Vundle.vim
-  endif
-  let vundle_first_run=1
-endif
-
-" Vundle
-set rtp+=~/.vim/bundle/Vundle.vim/
-if s:mswin
-  call vundle#begin('~/.vim/bundle/')
-else
-  " Usual quickstart instructions
-  call vundle#begin()
-endif
-
-" let Vundle manage Vundle
-" required!
-Plugin 'gmarik/Vundle.vim'
+call plug#begin('~/.local/share/nvim/plugged')
 
 " Plugins from their authors' repos:
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
-Plugin 'mileszs/ack.vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/syntastic'
+Plug 'mileszs/ack.vim'
 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 
-Plugin 'kien/ctrlp.vim'
+Plug 'kien/ctrlp.vim'
 let g:ctrlp_working_path_mode = 2
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_cache_dir = '~/.vimtmp/ctrlp'
@@ -75,17 +56,18 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\.exe$\|\.so$\|\.dll$',
   \ }
 
-Plugin 'kien/rainbow_parentheses.vim'
+Plug 'kien/rainbow_parentheses.vim'
 autocmd VimEnter * RainbowParenthesesToggle
 autocmd Syntax * RainbowParenthesesLoadRound
 autocmd Syntax * RainbowParenthesesLoadSquare
 autocmd Syntax * RainbowParenthesesLoadBraces
 
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-session'
-Plugin 'tpope/vim-surround'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-session'
+
+Plug 'tpope/vim-surround'
 set encoding=utf-8
-Plugin 'bling/vim-airline'
+Plug 'bling/vim-airline'
 "if !exists('g:airline_symbols')
 "  let g:airline_symbols = {}
 "endif
@@ -118,85 +100,99 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 
+Plug 'Lokaltog/vim-easymotion'
 
-Plugin 'Lokaltog/vim-easymotion'
-
-Plugin 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar'
 if s:mswin
   let g:tagbar_ctags_bin = '~/bin/ctags.exe'
 endif
 nmap <F8> :TagbarToggle<CR>
 
 if s:mswin
-  Plugin 'rstacruz/sparkup', {'rtp': 'vim'}
+  Plug 'rstacruz/sparkup', {'rtp': 'vim'}
 else
-  Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+  Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
 endif
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'AndrewRadev/linediff.vim'
-Plugin 'michaeljsmith/vim-indent-object'
-Plugin 'Townk/vim-autoclose'
-Plugin 'bogado/file-line'
-Plugin 'pangloss/vim-javascript'
-Plugin 'davidhalter/jedi-vim'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'mitsuhiko/vim-jinja'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'Yggdroot/indentLine'
-Plugin 'mbbill/undotree'
-Plugin 'tpope/vim-fugitive'
-"Plugin 'bronson/vim-trailing-whitespace'
-Plugin 'ntpeters/vim-better-whitespace'
-"Plugin 'ciaranm/detectindent'
-"Plugin 'vim-pandoc/vim-pandoc'
-"Plugin 'Rykka/riv.vim'
-"Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'mtth/scratch.vim'
-"Plugin 'wincent/ferret.vim'
+Plug 'AndrewRadev/linediff.vim'
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'Townk/vim-autoclose'
+Plug 'bogado/file-line'
+Plug 'pangloss/vim-javascript'
+Plug 'davidhalter/jedi-vim'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'mitsuhiko/vim-jinja'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'Yggdroot/indentLine'
+Plug 'mbbill/undotree'
+Plug 'tpope/vim-fugitive'
+"Plug 'bronson/vim-trailing-whitespace'
+Plug 'ntpeters/vim-better-whitespace'
+"Plug 'ciaranm/detectindent'
+"Plug 'vim-pandoc/vim-pandoc'
+"Plug 'Rykka/riv.vim'
+"Plug 'nathanaelkane/vim-indent-guides'
+Plug 'mtth/scratch.vim'
+"Plug 'wincent/ferret.vim'
+"
+" https://github.com/hynek/vim-python-pep8-indent
+Plug 'hynek/vim-python-pep8-indent'
+
+if using_neovim
+  Plug 'floobits/floobits-neovim'
+endif
+
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
+
+Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
+Plug 'lotabout/skim.vim'
+
+if using_neovim && vim_plug_just_installed
+    Plug 'Shougo/deoplete.nvim', {'do': ':autocmd VimEnter * UpdateRemotePlugins'}
+else
+    Plug 'Shougo/deoplete.nvim'
+endif
+
+if using_vim
+    " Consoles as buffers (neovim has its own consoles as buffers)
+    Plug 'rosenfeld/conque-term'
+    " XML/HTML tags navigation (neovim has its own)
+    Plug 'vim-scripts/matchit.zip'
+endif
 
 " vim-scripts repos
-Plugin 'VOoM'
-Plugin 'TaskList.vim'
-Plugin 'matchit.zip'
-"Plugin 'spacehi.vim'
+Plug 'VOoM'
+Plug 'TaskList.vim'
+Plug 'matchit.zip'
+"Plug 'spacehi.vim'
 if has('python')
-  Plugin 'ramiro/sort-python-imports'
+  Plug 'ramiro/sort-python-imports'
 endif
-Plugin 'Align'
-Plugin 'loremipsum'
-Plugin 'bufexplorer.zip'
-"Plugin 'AutoComplPop'
-Plugin 'snippetsEmu'
-Plugin 'vcscommand.vim'
-"Plugin 'SearchComplete'
-Plugin 'indenthtml.vim'
-
-" colorschemes
-Plugin 'desert256.vim'
-Plugin 'sjl/badwolf'
-Plugin 'NLKNguyen/papercolor-theme'
+Plug 'Align'
+Plug 'loremipsum'
+Plug 'bufexplorer.zip'
+"Plug 'AutoComplPop'
+Plug 'snippetsEmu'
+Plug 'vcscommand.vim'
+"Plug 'SearchComplete'
+Plug 'indenthtml.vim'
 
 " Python indentation
 " http://www.vim.org/scripts/script.php?script_id=3003
-"Plugin 'indentpython.vim'
+"Plug 'indentpython.vim'
 " http://www.vim.org/scripts/script.php?script_id=3461
-"Plugin 'vim-scripts/indentpython.vim--nianyang'
-" https://github.com/hynek/vim-python-pep8-indent
-Plugin 'hynek/vim-python-pep8-indent'
+"Plug 'vim-scripts/indentpython.vim--nianyang'
 
-if has('nvim')
-  Plugin 'floobits/floobits-neovim'
-endif
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-
-" Installing plugins the first time
-"if vundle_first_run == 1
-"  echo "Installing Plugins, please ignore key map error messages"
-"  echo ""
-"  :BundleInstall
-"endif
+" colorschemes
+Plug 'altercation/vim-colors-solarized'
+Plug 'desert256.vim'
+Plug 'sjl/badwolf'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'drewtempelmeyer/palenight.vim'
+Plug 'rakr/vim-one'
+Plug 'mhartington/oceanic-next'
+Plug 'romainl/flattened'
+call plug#end()
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -294,7 +290,7 @@ set cursorline
 set noerrorbells
 set visualbell t_vb=
 set nowrap
-set scrolloff=2
+set scrolloff=3
 set wildmode=longest,list,full
 set wildmenu
 
@@ -430,9 +426,28 @@ autocmd! Syntax tjp    source ~/.vim/syntax/tjp.vim
 " Don't warn on missing docstrings
 let g:syntastic_python_pylint_args='-d C0111'
 
+" 256 colors on macos + iterm
+" see https://jdhao.github.io/2018/10/19/tmux_nvim_true_color/
+set termguicolors
+
+" Trying some mapping for fzf. See https://medium.com/@jesseleite/its-dangerous-to-vim-alone-take-fzf-283bcff74d21
+nmap <Leader>F :Files<CR>
+nmap <Leader>/ :Rg<Space>
+nnoremap <silent> <Leader>rg :Rg <C-R><C-W><CR>
+
+" skim
+"command! -bang -nargs=* Rg call fzf#vim#rg_interactive(<q-args>, fzf#vim#with_preview('right:50%:hidden', 'alt-h'))
+
+au FileType python map <silent> <leader>b Oimport ipdb; ipdb.set_trace()<esc>
+
 " Source a local configuration file if available.
-if filereadable(expand("~/.vimrc.post"))
-  source ~/.vimrc.post
+if using_neovim
+    let post_vim_path = "~/.config/nvim/post.vim"
+else
+    let post_vim_path = "~/.vim/post.vim"
+endif
+if filereadable(expand(post_vim_path))
+  execute "source " . post_vim_path
 endif
 
 if s:mswin
