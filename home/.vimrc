@@ -160,32 +160,33 @@ if using_vim
     Plug 'vim-scripts/matchit.zip'
 endif
 
-" vim-scripts repos
-Plug 'VOoM'
-Plug 'TaskList.vim'
-Plug 'matchit.zip'
-"Plug 'spacehi.vim'
 if has('python')
   Plug 'ramiro/sort-python-imports'
 endif
-Plug 'Align'
-Plug 'loremipsum'
-Plug 'bufexplorer.zip'
-"Plug 'AutoComplPop'
-Plug 'snippetsEmu'
-Plug 'vcscommand.vim'
-"Plug 'SearchComplete'
-Plug 'indenthtml.vim'
+
+" vim-scripts repos
+Plug 'vim-scripts/VOoM'
+Plug 'vim-scripts/TaskList.vim'
+Plug 'vim-scripts/matchit.zip'
+"Plug 'vim-scripts/spacehi.vim'
+Plug 'vim-scripts/Align'
+Plug 'vim-scripts/loremipsum'
+Plug 'vim-scripts/bufexplorer.zip'
+"Plug 'vim-scripts/AutoComplPop'
+Plug 'vim-scripts/snippetsEmu'
+Plug 'vim-scripts/vcscommand.vim'
+"Plug 'vim-scripts/SearchComplete'
+Plug 'vim-scripts/indenthtml.vim'
 
 " Python indentation
 " http://www.vim.org/scripts/script.php?script_id=3003
-"Plug 'indentpython.vim'
+"Plug 'vim-scripts/indentpython.vim'
 " http://www.vim.org/scripts/script.php?script_id=3461
 "Plug 'vim-scripts/indentpython.vim--nianyang'
 
 " colorschemes
 Plug 'altercation/vim-colors-solarized'
-Plug 'desert256.vim'
+Plug 'vim-scripts/desert256.vim'
 Plug 'sjl/badwolf'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'drewtempelmeyer/palenight.vim'
