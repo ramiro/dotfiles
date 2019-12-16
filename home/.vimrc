@@ -25,7 +25,7 @@ set t_Co=256
 
 set langmenu=en
 
-filetype off
+"filetype off
 
 function! EnsureTmpDir(dirlst)
   let l:d = split(a:dirlst, ",")[0]
